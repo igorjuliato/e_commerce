@@ -1,36 +1,36 @@
-package demo.repository;
+package demo.RegistroPedido;
 
-import demo.Dtos.DtoResgistroPedido;
-import demo.Dtos.ItensPedidos;
-import demo.service.RegistrarPedidos;
+import demo.RegistroPedido.Dtos.DtoResgistroPedido;
 import jakarta.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
+@Entity
 @Table
-public class PedidosRepository {
+public class Pedidos {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long IdPedido;
 
     private String Cliente;
-
     private Date dataPedido;
+    private String localPedido;
 
-    @OneToMany
+    @OneToMany(mappedBy = "pedidos", cascade = CascadeType.ALL)
     private List<ItensPedidos> pedidos;
-
-    private String EntregaPedido;
-
-
 
     public void PedidosRepository(){}
 
-    public PedidosRepository(DtoResgistroPedido dto){
+     public Pedidos(){}
 
+    public Pedidos(DtoResgistroPedido dto){
+         this.IdPedido = dto.idPedido();
+         this.Cliente = dto.nomeCliente();
+         this.dataPedido = dto.dataDoPedido();
+         this.localPedido = dto.localPedido();
     }
+
 
     public Long getIdPedido() {
         return IdPedido;
@@ -64,11 +64,11 @@ public class PedidosRepository {
         this.pedidos = pedidos;
     }
 
-    public String getEntregaPedido() {
-        return EntregaPedido;
+    public String getLocalPedido() {
+        return localPedido;
     }
 
-    public void setEntregaPedido(String entregaPedido) {
-        EntregaPedido = entregaPedido;
+    public void setLocalPedido(String localPedido) {
+        this.localPedido = localPedido;
     }
 }
