@@ -1,10 +1,7 @@
-package demo.RegistroPedido;
+package demo.domain;
 
-import demo.RegistroPedido.Dtos.DtoItensPedidos;
-import demo.RegistroPedido.Dtos.DtoResgistroPedido;
+import demo.Dtos.DtoItensPedidos;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name = "itens_pedidos")
@@ -20,6 +17,10 @@ public class ItensPedidos {
     @ManyToOne
     @JoinColumn(name = "pedidos_id")
     private Pedidos pedidos;
+
+    private ItensPedidos(DtoItensPedidos dto) {
+
+    }
 
     public ItensPedidos(){}
 

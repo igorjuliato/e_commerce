@@ -1,4 +1,4 @@
-package demo.RegistroPedido.Dtos;
+package demo.Dtos;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
