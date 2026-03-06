@@ -12,7 +12,7 @@ public class ItensPedidos {
     private Long id;
     private String nome;
     private Integer quantidade;
-    private float PrecoUnitario;
+
 
     @ManyToOne
     @JoinColumn(name = "pedidos_id")
@@ -46,14 +46,6 @@ public class ItensPedidos {
 
     public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
-    }
-
-    public float getPreçoUnitario() {
-        return PrecoUnitario;
-    }
-
-    public void setPreçoUnitario(float preçoUnitario) {
-        PrecoUnitario = preçoUnitario;
     }
 
     public Pedidos getPedidos() {

@@ -1,6 +1,6 @@
 package demo.domain;
 
-import demo.Dtos.DtoResgistroPedido;
+import demo.Dtos.DtoRegistroPedido;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -23,9 +23,9 @@ public class Pedidos {
     @OneToMany(mappedBy = "pedidos", cascade = CascadeType.ALL)
     private List<ItensPedidos> listPedido;
 
-    public Pedidos(DtoResgistroPedido dto){
+    public Pedidos(DtoRegistroPedido dto){
       this.Cliente = dto.nomeCliente();
-      this. dataPedido = dto.dataDoPedido();
+      this.dataPedido = dto.dataDoPedido();
       this.localPedido = dto.localPedido();
     }
 

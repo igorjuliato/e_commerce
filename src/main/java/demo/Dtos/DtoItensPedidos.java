@@ -5,13 +5,8 @@ import jakarta.validation.constraints.Positive;
 import org.springframework.data.annotation.Id;
 
 public record DtoItensPedidos(
-      @Id
-      Long IdPedido,
       @NotNull
-      String nomeProduto,
+      long idProduto,
       @NotNull
-      Integer quantidade,
-      @NotNull
-      @Positive
-      Float PrecoUnitario
+      Integer quantidade
 ){}
