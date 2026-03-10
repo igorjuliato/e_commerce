@@ -26,7 +26,6 @@ public class areaFabricanteService {
 
         if(pedido.isPresent()){
 
-
     } else {
            infra.execepitionsPedidos execepitionsPedidos = new execepitionsPedidos("pedido não encontrado");
             controller.handleResourceNotFound(execepitionsPedidos);

@@ -1,6 +1,5 @@
 package demo.controller;
 
-import demo.Dtos.DtoBuscarCliente;
 import demo.Dtos.DtoBuscarPedido;
 import demo.Service.areaFabricanteService;
 import infra.execepitionsPedidos;

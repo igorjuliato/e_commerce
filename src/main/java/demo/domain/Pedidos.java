@@ -3,6 +3,7 @@ package demo.domain;
 import demo.Dtos.DtoRegistroPedido;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ public class Pedidos {
 
     private String Cliente;
 
-    private Date dataPedido;
+    private LocalDate dataPedido;
 
     private String localPedido;
 
@@ -47,11 +48,9 @@ public class Pedidos {
         Cliente = cliente;
     }
 
-    public Date getDataPedido() {
-        return dataPedido;
-    }
+    public LocalDate getDataPedido() {return dataPedido;}
 
-    public void setDataPedido(Date dataPedido) {
+    public void setDataPedido(LocalDate dataPedido) {
         this.dataPedido = dataPedido;
     }
 

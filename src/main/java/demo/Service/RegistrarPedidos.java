@@ -1,11 +1,12 @@
 package demo.Service;
 
-import demo.Dtos.DtoRegistroPedido;
+import demo.Dtos.DtoPedido;
 import demo.domain.ItensPedidos;
 import demo.domain.Pedidos;
 import demo.Repository.pedidosRepository;
-import demo.mapper.ItensPedidosMapper;
+import demo.mapper.ItensMapper;
 import demo.mapper.PedidosMapper;
+import org.apache.coyote.Request;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -20,13 +21,17 @@ public class RegistrarPedidos {
         this.repository = repository;
     }
 
-    public void RegistarPedido(DtoRegistroPedido dto){
+    private PedidosMapper mapperPedido;
 
-        Pedidos pedidos = PedidosMapper.toEntity(dto);
+    private ItensMapper mappperItens;
 
-           List<ItensPedidos> listaDePedidos = dto.itens().stream().
+    public void RegistarPedido (DtoPedido.Request dto) {
+
+        Pedidos pedidos = mapperPedido.converter(dto);
+
+        List<ItensPedidos> listaDePedidos = dto.getItens().stream().
                    map(i -> {
-                       ItensPedidos iten = ItensPedidosMapper.toEntidy(i);
+                       ItensPedidos iten = mappperItens.converter(i);
                        iten.setPedidos(pedidos);
 
                        return iten;
