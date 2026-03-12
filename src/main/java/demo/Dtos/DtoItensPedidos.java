@@ -12,7 +12,5 @@ public record DtoItensPedidos(
         @NotNull
       long idProduto,
         @NotNull
-      Integer quantidade,
-        @NotNull
-        List<DtoItensPedidos> itens
+      Integer quantidade
 ){}

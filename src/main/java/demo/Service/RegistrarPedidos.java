@@ -1,12 +1,12 @@
 package demo.Service;
 
-import demo.Dtos.DtoPedido;
 import demo.domain.ItensPedidos;
 import demo.domain.Pedidos;
 import demo.Repository.pedidosRepository;
 import demo.mapper.ItensMapper;
 import demo.mapper.PedidosMapper;
 import org.apache.coyote.Request;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -21,8 +21,10 @@ public class RegistrarPedidos {
         this.repository = repository;
     }
 
+    @Autowired
     private PedidosMapper mapperPedido;
 
+    @Autowired
     private ItensMapper mappperItens;
 
     public void RegistarPedido (DtoPedido.Request dto) {

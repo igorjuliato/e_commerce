@@ -31,7 +31,4 @@ public class PedidoAssertions {
          Assertions.assertEquals(LocalDate.of(2026, 02, 20) ,dados.getDataPedido());
          Assertions.assertEquals("bougainville",dados.getLocalPedido());
      }
-
-
-
 }

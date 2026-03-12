@@ -13,14 +13,9 @@ public class ItensPedidos {
     private String nome;
     private Integer quantidade;
 
-
     @ManyToOne
     @JoinColumn(name = "pedidos_id")
     private Pedidos pedidos;
-
-    private ItensPedidos(DtoItensPedidos dto) {
-
-    }
 
     public ItensPedidos(){}
 

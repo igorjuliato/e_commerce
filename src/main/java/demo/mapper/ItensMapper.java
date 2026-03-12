@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import static org.mapstruct.NullValuePropertyMappingStrategy.IGNORE;
 
 
-@Mapper(nullValuePropertyMappingStrategy = IGNORE)
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = IGNORE)
 public interface ItensMapper {
     ItensPedidos converter(DtoItensPedidos dto);
 }
