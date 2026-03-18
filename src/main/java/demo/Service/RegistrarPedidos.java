@@ -29,7 +29,7 @@ public class RegistrarPedidos {
     @Autowired
     private ItensMapper mappperItens;
 
-    public void RegistarPedido (DtoPedido.Request dto) {
+    public String RegistarPedido (DtoPedido.Request dto) {
             Pedidos pedidos = mapperPedido.converter(dto);
 
             List<ItensPedidos> listaDePedidos = dto.getItens().stream().
@@ -43,6 +43,7 @@ public class RegistrarPedidos {
             pedidos.setListPedido(listaDePedidos);
 
             repository.save(pedidos);
+            return "seu pedido foi feito";
     }
 }
 
