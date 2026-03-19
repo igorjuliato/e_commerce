@@ -1,9 +1,10 @@
 package demo.controller;
 
 import demo.Dtos.DtoBuscarPedido;
+import demo.Dtos.DtoAtualizar;
 import demo.Service.CalcularPedido;
-import infra.execepitionsPedidos;
-import org.springframework.http.HttpStatus;
+import demo.Service.AtualizarProduto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,14 +14,21 @@ import java.math.BigDecimal;
 @RequestMapping("paraFabricante")
 public class ControllerAreaFabricante {
 
+    @Autowired
     private CalcularPedido calcular;
 
-    @GetMapping("/{id}/total")
+    @Autowired
+    private AtualizarProduto Modificar;
+
+    @GetMapping("/{id}/calcularPedido")
     public ResponseEntity<BigDecimal> calcularValorDeCompra(DtoBuscarPedido.Request dto){
         BigDecimal valorTotal = calcular.calcularPrecoDeCompra(dto);
         return ResponseEntity.ok(valorTotal);
     }
 
-    @PostMapping
-    public ResponseEntity<String>
+    @PatchMapping("{id}/ModificarPedido")
+    public ResponseEntity<String> ModificaçãoDeProduto(DtoAtualizar.Request dto) {
+         Modificar.ModificarProduto(dto);
+         return ResponseEntity.ok();
+    }
 }
