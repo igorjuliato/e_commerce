@@ -24,9 +24,6 @@ public class CalcularPedido {
         this.repository = repository;
     }
 
-    @Autowired
-    private ControllerAreaFabricante controller;
-
     @Transactional
     public BigDecimal calcularPrecoDeCompra(DtoBuscarPedido.Request dto) {
         Optional<Pedidos> BuscaPedido = Optional.of(repository.findById(dto.getId())
@@ -37,7 +34,7 @@ public class CalcularPedido {
             List<ItensPedidos> ItensDoCliente = pedido.getListPedido();
             BigDecimal valorTotal = ItensDoCliente.stream().map(
                     i -> {
-                        int preco = repository.buscarPrecoUnitario(i.getId());
+                        int preco = repository.buscarPrecoUnitario(i.getProduto().getId());
                         int quantidade = i.getQuantidade();
                         BigDecimal valorDeCadaItemPedido = new BigDecimal(preco * quantidade);
 

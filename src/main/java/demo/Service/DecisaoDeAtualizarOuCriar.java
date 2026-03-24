@@ -4,9 +4,11 @@ import demo.Dtos.DtoAtualizarECriar;
 import demo.Repository.ProdutoRepository;
 import demo.domain.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class DecisaoDeAtualizarOuCriar extends CriarEAtualizarProdutos {
 
     @Autowired
@@ -18,7 +20,7 @@ public class DecisaoDeAtualizarOuCriar extends CriarEAtualizarProdutos {
 
         this.dtoRequeste = dtoRequest;
 
-        Optional<Produto> VerificarNoDB = repository.ExistByNome(dtoRequest.getNomeProduto());
+        Optional<Produto> VerificarNoDB = repository.findByNomeProduto(dtoRequest.getNomeProduto());
 
         if (VerificarNoDB.isPresent()) {
             return DtoAtualizarECriar.Response.builder()

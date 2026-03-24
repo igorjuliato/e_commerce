@@ -9,4 +9,5 @@ public record DtoItensPedidos(
       long idProduto,
         @NotNull
       Integer quantidade
+
 ){}

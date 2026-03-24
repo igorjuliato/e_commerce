@@ -12,10 +12,7 @@ import java.util.List;
 public interface PedidosRepository extends JpaRepository<Pedidos, Long > {
 
     @Query("""
-    SELECT ip.preco
-    FROM ItemPedido i
-    JOIN InformacoesProduto ip ON ip.id = i.produtoId
-    WHERE i.id = :itemPedidoId
+  SELECT i.produto.preco FROM ItensPedidos i WHERE i.id = :itemPedidoId
 """)
     int buscarPrecoUnitario(@Param("itemPedidoId") Long itemPedidoId);
 }

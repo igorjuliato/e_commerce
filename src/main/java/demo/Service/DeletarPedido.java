@@ -7,9 +7,11 @@ import infra.ExecepitionsPedidoNaoEncontrado;
 import infra.ProdutoExistente;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+@Service
 public class DeletarPedido {
 
     @Autowired
