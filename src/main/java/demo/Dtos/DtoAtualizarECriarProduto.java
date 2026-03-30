@@ -5,7 +5,7 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-public class DtoAtualizarECriar {
+public class DtoAtualizarECriarProduto {
 
      @NoArgsConstructor
      @Getter

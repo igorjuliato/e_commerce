@@ -1,7 +1,9 @@
 package demo.controller;
 
 import infra.ExecepitionsPedidoNaoEncontrado;
+import infra.PedidoInvalido;
 import infra.ProdutoExistente;
+import infra.RegiaoInvalida;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -19,5 +21,14 @@ public class ControllerAdvence {
  public ResponseEntity<String> pedidoJaExistente (ProdutoExistente ex){
      return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pedido ja existe");
  }
- 
+
+    @ExceptionHandler(RegiaoInvalida.class)
+    public ResponseEntity<String> RegiaoInvalida (ProdutoExistente ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pedido ja existe");
+    }
+
+    @ExceptionHandler(PedidoInvalido.class)
+    public ResponseEntity<String> PedidoInvalido (ProdutoExistente ex){
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("pedido ja existe");
+    }
 }

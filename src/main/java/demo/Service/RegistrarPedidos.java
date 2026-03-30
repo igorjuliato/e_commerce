@@ -1,11 +1,13 @@
 package demo.Service;
 
 import demo.Dtos.DtoPedido;
+import demo.Service.RegarDeLocal.RegrasDeLocalidadeDePedido;
 import demo.domain.ItensPedidos;
 import demo.domain.Pedidos;
 import demo.Repository.PedidosRepository;
 import demo.mapper.ItensMapper;
 import demo.mapper.PedidosMapper;
+import infra.PedidoInvalido;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +31,15 @@ public class RegistrarPedidos {
     @Autowired
     private ItensMapper mappperItens;
 
+    @Autowired
+    private RegrasDeLocalidadeDePedido validaçãoLocal;
+
     public String RegistarPedido (DtoPedido.Request dto) {
+        if(dto.getItens().get(0).quantidade() <= 0){throw new PedidoInvalido(
+                "no item: " + dto.getItens().get(0).idProduto() + " deve ter pelo menos um produto");}
+
+        validaçãoLocal.NaoEntregaNoLocal(dto);
+
             Pedidos pedidos = mapperPedido.converter(dto);
 
             List<ItensPedidos> listaDePedidos = dto.getItens().stream().

@@ -1,6 +1,6 @@
 package demo.Service;
 
-import demo.Dtos.DtoAtualizarECriar;
+import demo.Dtos.DtoAtualizarECriarProduto;
 import demo.Repository.ProdutoRepository;
 import demo.domain.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +14,21 @@ public class DecisaoDeAtualizarOuCriar extends CriarEAtualizarProdutos {
     @Autowired
     private ProdutoRepository repository;
 
-    private DtoAtualizarECriar.Request dtoRequeste;
+    private DtoAtualizarECriarProduto.Request dtoRequeste;
 
-    public DtoAtualizarECriar.Response VerificarNoDB(DtoAtualizarECriar.Request dtoRequest) {
+    public DtoAtualizarECriarProduto.Response VerificarNoDB(DtoAtualizarECriarProduto.Request dtoRequest) {
 
         this.dtoRequeste = dtoRequest;
 
         Optional<Produto> VerificarNoDB = repository.findByNomeProduto(dtoRequest.getNomeProduto());
 
         if (VerificarNoDB.isPresent()) {
-            return DtoAtualizarECriar.Response.builder()
+            return DtoAtualizarECriarProduto.Response.builder()
                     .mensagem("Produto já existe, deseja atualizar os dados dele?")
                     .acao("ATUALIZAR")
                     .build();
         } else {
-            return DtoAtualizarECriar.Response.builder()
+            return DtoAtualizarECriarProduto.Response.builder()
                     .mensagem("Produto não existe, deseja criar")
                     .acao("CRIAR")
                     .build();
@@ -36,7 +36,7 @@ public class DecisaoDeAtualizarOuCriar extends CriarEAtualizarProdutos {
 
     }
 
-    public String CriarProduto(DtoAtualizarECriar.RequestResposta dto) {
+    public String CriarProduto(DtoAtualizarECriarProduto.RequestResposta dto) {
         if (dto.getRespostaCliente().equals("ATUALIZAR")) {
           Atualizar(dtoRequeste);
           String mensagem = "seu item " + dtoRequeste.getNomeProduto()+ " acabou de ser atualizado";

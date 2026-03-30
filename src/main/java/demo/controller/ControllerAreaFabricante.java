@@ -1,6 +1,6 @@
 package demo.controller;
 
-import demo.Dtos.DtoAtualizarECriar;
+import demo.Dtos.DtoAtualizarECriarProduto;
 import demo.Dtos.DtoBuscarPedido;
 import demo.Service.CalcularPedido;
 import demo.Service.DecisaoDeAtualizarOuCriar;
@@ -28,13 +28,13 @@ public class ControllerAreaFabricante {
     }
 
     @PostMapping("/Atualizar/Criar")
-    public ResponseEntity<DtoAtualizarECriar.Response> AtualizarOuCriarProduto (@RequestBody @Valid DtoAtualizarECriar.Request dto){
-        DtoAtualizarECriar.Response resposta = CriarOuAtualizar.VerificarNoDB(dto);
+    public ResponseEntity<DtoAtualizarECriarProduto.Response> AtualizarOuCriarProduto (@RequestBody @Valid DtoAtualizarECriarProduto.Request dto){
+        DtoAtualizarECriarProduto.Response resposta = CriarOuAtualizar.VerificarNoDB(dto);
         return ResponseEntity.ok(resposta);
     }
 
     @PostMapping("/confirmar")
-    public ResponseEntity<String> Confirmar (@Valid DtoAtualizarECriar.RequestResposta dto){
+    public ResponseEntity<String> Confirmar (@Valid DtoAtualizarECriarProduto.RequestResposta dto){
        String mensagem = CriarOuAtualizar.CriarProduto(dto);
        return ResponseEntity.ok(mensagem);
     }

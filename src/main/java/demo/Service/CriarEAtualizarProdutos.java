@@ -1,6 +1,6 @@
 package demo.Service;
 
-import demo.Dtos.DtoAtualizarECriar;
+import demo.Dtos.DtoAtualizarECriarProduto;
 import demo.Repository.ProdutoRepository;
 import demo.domain.Produto;
 import demo.mapper.ProdutoMapper;
@@ -21,7 +21,7 @@ public class CriarEAtualizarProdutos {
     private static ProdutoMapper mapper;
 
     @Transactional
-    public void Atualizar(DtoAtualizarECriar.Request dto) {
+    public void Atualizar(DtoAtualizarECriarProduto.Request dto) {
         Produto produto = repository.findById(dto.getId())
                 .orElseThrow(() -> new ExecepitionsPedidoNaoEncontrado("seu Produto não foi encontrado"));
 
@@ -30,7 +30,7 @@ public class CriarEAtualizarProdutos {
         repository.save(produto);
     }
 
-    public void CriarProduto(DtoAtualizarECriar.Request dto){
+    public void CriarProduto(DtoAtualizarECriarProduto.Request dto){
         Produto produto = repository.findById(dto.getId())
                         .orElseThrow(() -> new ProdutoExistente("seu produto ja existe"));
 

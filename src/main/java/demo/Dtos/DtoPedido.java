@@ -25,6 +25,6 @@ public class DtoPedido{
         private LocalDate dataDoPedido;
 
         @NotNull
-        private String localPedido;
+        private String cep;
     }
 }
