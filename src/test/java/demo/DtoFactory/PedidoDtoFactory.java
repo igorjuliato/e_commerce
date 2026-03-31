@@ -2,9 +2,13 @@ package demo.DtoFactory;
 
 import demo.Dtos.DtoItensPedidos;
 import demo.Dtos.DtoPedido;
+import demo.domain.Produto;
+import infra.ProdutoExistente;
+import infra.RegiaoInvalida;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.junit.jupiter.params.provider.Arguments;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -58,7 +62,7 @@ public final class PedidoDtoFactory {
                     .build();
             var dto = DtoPedido.Request.builder()
                     .itens(List.of(iten1, iten2, iten3))
-                    .nomeCliente("igor")
+                    .nomeCliente("ucelli")
                     .dataDoPedido(LocalDate.of(2026, 02, 20))
                     .cep("05600-000")
                     .build();
@@ -80,7 +84,7 @@ public final class PedidoDtoFactory {
                     .build();
             var dto = DtoPedido.Request.builder()
                     .itens(List.of(iten1, iten2, iten3))
-                    .nomeCliente("igor")
+                    .nomeCliente("juliato")
                     .dataDoPedido(LocalDate.of(2026, 02, 20))
                     .cep("05600-000")
                     .build();
@@ -88,11 +92,14 @@ public final class PedidoDtoFactory {
         }
        }
 
-    static Stream<DtoPedido.Request> TodosOsCenarios( ){
+    public static Stream<Arguments> TodosOsCenarios( ){
         return Stream.of(
-                PedidoDtoFactory.criarProdutoDtoRequest().valido(),
-                PedidoDtoFactory.criarProdutoDtoRequest().InvalidoPorLocal(),
-                PedidoDtoFactory.criarProdutoDtoRequest().invalidoPorQuantidade()
+                Arguments.of(
+                        PedidoDtoFactory.criarProdutoDtoRequest().valido(), null),
+                Arguments.of(
+                PedidoDtoFactory.criarProdutoDtoRequest().InvalidoPorLocal(), RegiaoInvalida.class),
+                Arguments.of(
+                PedidoDtoFactory.criarProdutoDtoRequest().invalidoPorQuantidade(), ProdutoExistente.class)
         );}
     }
 
