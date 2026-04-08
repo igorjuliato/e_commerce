@@ -8,6 +8,7 @@ import demo.Repository.PedidosRepository;
 import demo.mapper.ItensMapper;
 import demo.mapper.PedidosMapper;
 import infra.PedidoInvalido;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,13 +18,9 @@ import java.util.*;
 public class RegistrarPedidos {
 
     @Autowired
-    private final PedidosRepository repository;
+    private PedidosRepository repository;
 
     private Pedidos pedido;
-
-    public RegistrarPedidos(PedidosRepository repository) {
-        this.repository = repository;
-    }
 
     @Autowired
     private PedidosMapper mapperPedido;
