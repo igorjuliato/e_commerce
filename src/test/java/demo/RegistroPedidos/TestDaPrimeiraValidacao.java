@@ -1,21 +1,19 @@
 package demo.RegistroPedidos;
 
 import static org.mockito.Mockito.*;
-import demo.DtoFactory.PedidoDtoFactory;
+
 import demo.Dtos.DtoPedido;
+import demo.Dtos.DtoResponseApiViacep;
 import demo.Service.RegarDeLocal.RegrasDeLocalidadeDePedido;
 import demo.Service.RegarDeLocal.ViaCepCliente;
 import infra.RegiaoInvalida;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.Arguments;
-import org.junit.jupiter.params.provider.MethodSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.stream.Stream;
 
 @ExtendWith(MockitoExtension.class)
 class TestDaPrimeiraValidacao {
@@ -23,27 +21,38 @@ class TestDaPrimeiraValidacao {
     @Mock
     private ViaCepCliente viacep;
 
-    private demo.Service.RegarDeLocal.DtoResponseApiViacep.Request dto;
-
     @InjectMocks
     private RegrasDeLocalidadeDePedido PrimeiraValidacao;
 
-    public static Stream<Arguments> TodosOsCenarios() {
-        return Stream.of(
-                Arguments.of(PedidoDtoFactory.criarProdutoDtoRequest().valido(), null),
-                Arguments.of(PedidoDtoFactory.criarProdutoDtoRequest().InvalidoPorLocal(), RegiaoInvalida.class)
-        );
+
+    @Test
+    @DisplayName("deveria ser valido")
+    public void Teste1PrimeiraValicaoDeLocal(){
+
+        DtoResponseApiViacep.Request retorno = new DtoResponseApiViacep.Request();
+        retorno.setRegiao("Nordeste");
+
+        when(viacep.buscarPorCidade(anyString())).thenReturn(retorno);
+
+        DtoPedido.Request dto = new DtoPedido.Request();
+        dto.setCep("58046-527");
+
+        Assertions.assertDoesNotThrow(() -> PrimeiraValidacao.NaoEntregaNoLocal(dto));
     }
 
-    @ParameterizedTest
-    @MethodSource("TodosOsCenarios")
-    public void TestandoPrimeiraValicaoDoFluxo(DtoPedido.Request dto, Class<? extends Exception> exceptionClass){
+    @Test
+    @DisplayName("deveria ser invalido")
+    public void Teste2doPrimeiraValicaoDeLocal(){
 
-        dto.setCep("58077-110");
+        DtoResponseApiViacep.Request retorno = new DtoResponseApiViacep.Request();
+        retorno.setRegiao("Suldeste");
 
-        when(viacep.buscarPorCidade(anyString())).thenReturn(dto);
+        when(viacep.buscarPorCidade(anyString())).thenReturn(retorno);
 
-        Assertions.assertDoesNotThrow(() -> PrimeiraValidacao.NaoEntregaNoLocal(dto.getCep()));
+        DtoPedido.Request dto = new DtoPedido.Request();
+        dto.setCep("20000-000");
+
+        Assertions.assertThrows(RegiaoInvalida.class ,() -> PrimeiraValidacao.NaoEntregaNoLocal(dto));
     }
 }
 

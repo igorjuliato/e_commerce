@@ -20,8 +20,6 @@ public class RegistrarPedidos {
     @Autowired
     private PedidosRepository repository;
 
-    private Pedidos pedido;
-
     @Autowired
     private PedidosMapper mapperPedido;
 
@@ -32,7 +30,7 @@ public class RegistrarPedidos {
     private RegrasDeLocalidadeDePedido validaçãoLocal;
 
     public String RegistarPedido (DtoPedido.Request dto) {
-        if(dto.getItens().get(0).quantidade() <= 0){throw new PedidoInvalido(
+        if(dto.getItens().get(0).quantidade() <= 0) {throw new PedidoInvalido(
                 "no item: " + dto.getItens().get(0).idProduto() + " deve ter pelo menos um produto");}
 
         validaçãoLocal.NaoEntregaNoLocal(dto);

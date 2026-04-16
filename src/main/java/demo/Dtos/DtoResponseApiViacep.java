@@ -1,4 +1,4 @@
-package demo.Service.RegarDeLocal;
+package demo.Dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
