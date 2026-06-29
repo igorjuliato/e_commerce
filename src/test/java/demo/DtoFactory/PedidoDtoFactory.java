@@ -1,9 +1,9 @@
 package demo.DtoFactory;
-import demo.Dtos.DtoItensPedidos;
-import demo.Dtos.DtoPedido;
+import demo.sistemaCliente.Dtos.DtoItensPedidos;
+import demo.sistemaCliente.Dtos.DtoPedido;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,13 +12,11 @@ import java.util.List;
 public final class PedidoDtoFactory {
 
 
-    public static Request criarProdutoDtoRequest() {
-        return new Request();
+    public static DtoPedido.Request criarProdutoDtoRequest() {
+        return new DtoPedido.Request();
     }
 
-    public static class Request {
-
-        public DtoPedido.Request valido() {
+         public static DtoPedido.Request valido() {
             var iten1 = DtoItensPedidos.builder()
                     .idProduto(1)
                     .quantidade(3)
@@ -40,7 +38,7 @@ public final class PedidoDtoFactory {
             return dto;
         }
 
-        public DtoPedido.Request InvalidoPorLocal() {
+        public static DtoPedido.Request InvalidoPorLocal() {
             var iten1 = DtoItensPedidos.builder()
                     .idProduto(1)
                     .quantidade(3)
@@ -62,7 +60,7 @@ public final class PedidoDtoFactory {
             return dto;
         }
 
-        public DtoPedido.Request invalidoPorQuantidade() {
+        public static DtoPedido.Request invalidoPorQuantidade() {
             var iten1 = DtoItensPedidos.builder()
                     .idProduto(1)
                     .quantidade(0)
@@ -82,7 +80,7 @@ public final class PedidoDtoFactory {
                     .cep("05600-000")
                     .build();
             return dto;
-        }
     }
 }
+
 

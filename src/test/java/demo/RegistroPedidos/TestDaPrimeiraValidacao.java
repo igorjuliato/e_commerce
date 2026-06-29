@@ -2,10 +2,10 @@ package demo.RegistroPedidos;
 
 import static org.mockito.Mockito.*;
 
-import demo.Dtos.DtoPedido;
-import demo.Dtos.DtoResponseApiViacep;
-import demo.Service.RegarDeLocal.RegrasDeLocalidadeDePedido;
-import demo.Service.RegarDeLocal.ViaCepCliente;
+import demo.sistemaCliente.Dtos.DtoPedido;
+import demo.sistemaCliente.Dtos.DtoResponseApiViacep;
+import demo.sistemaCliente.Service.RegarDeLocal.RegrasDeLocalidadeDePedido;
+import demo.sistemaCliente.Service.RegarDeLocal.ViaCepCliente;
 import infra.RegiaoInvalida;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
